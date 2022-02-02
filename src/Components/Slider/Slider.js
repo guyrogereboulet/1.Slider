@@ -6,23 +6,38 @@ import BtnSlider from "./BtnSlider";
 const Slider = () => {
   const [slideAnim, setSlideAnim] = useState({
     index: 1,
+    // Prévenir le spam click
     inProgress: false,
   });
 
   const nextSlide = () => {
-    if (slideAnim.index !== dataSlider.length) {
+    if (slideAnim.index !== dataSlider.length && !slideAnim.inProgress) {
       setSlideAnim({ index: slideAnim.index + 1, inProgress: true });
-      console.log(slideAnim.index);
-    } else if (slideAnim.index === dataSlider.length) {
+      // Prévenir le spam click
+      setTimeout(() => {
+        setSlideAnim({ index: slideAnim.index + 1, inProgress: false });
+      }, 400);
+    } else if (slideAnim.index === dataSlider.length && !slideAnim.inProgress) {
       setSlideAnim({ index: 1, inProgress: true });
+      // Prévenir le spam click
+      setTimeout(() => {
+        setSlideAnim({ index: 1, inProgress: false });
+      }, 400);
     }
   };
   const prevSlide = () => {
-    if (slideAnim.index !== 1) {
+    if (slideAnim.index !== 1 && !slideAnim.inProgress) {
       setSlideAnim({ index: slideAnim.index - 1, inProgress: true });
-      console.log(slideAnim.index);
-    } else if (slideAnim.index === 1) {
+      // Prévenir le spam click
+      setTimeout(() => {
+        setSlideAnim({ index: slideAnim.index - 1, inProgress: false });
+      }, 400);
+    } else if (slideAnim.index === 1 && !slideAnim.inProgress) {
       setSlideAnim({ index: dataSlider.length, inProgress: true });
+      // Prévenir le spam click
+      setTimeout(() => {
+        setSlideAnim({ index: dataSlider.length, inProgress: false });
+      }, 400);
     }
   };
   return (
